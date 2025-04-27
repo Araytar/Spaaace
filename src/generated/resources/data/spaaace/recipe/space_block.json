@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "tag": "minecraft:planks"
+    },
+    "X": {
+      "item": "minecraft:book"
+    }
+  },
+  "pattern": [
+    "BBB",
+    "BXB",
+    "BXB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "spaaace:space_block"
+  }
+}
