@@ -1,19 +1,12 @@
 package net.araytar.spaaace.datagen;
 
 import net.araytar.spaaace.items.MBlocks;
-import net.araytar.spaaace.items.MItems;
-import net.minecraft.advancements.critereon.InventoryChangeTrigger;
-import net.minecraft.advancements.critereon.ItemPredicate;
-import net.minecraft.client.resources.model.Material;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.MinecartItem;
-import net.minecraft.world.item.crafting.BlastingRecipe;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.SmeltingRecipe;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
 
 import java.util.List;
@@ -21,6 +14,7 @@ import java.util.concurrent.CompletableFuture;
 
 import static net.minecraft.world.item.Items.BOOK;
 
+@SuppressWarnings("NullableProblems")
 public class MRecipeProvider extends RecipeProvider {
     public MRecipeProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries);
@@ -67,14 +61,9 @@ public class MRecipeProvider extends RecipeProvider {
         */
     }
 
-    protected static void oreSmelting(RecipeOutput recipeOutput,
-            List<ItemLike> pIngredients,
-            RecipeCategory pCategory,
-            ItemLike pResult,
-            float pExperience,
-            int pCookingTime,
-            String pGroup) {
-        oreCooking(recipeOutput,
+    protected static void oreSmelting(RecipeOutput recipeOutput, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult, float pExperience, int pCookingTime, String pGroup) {
+        oreCooking(
+                recipeOutput,
                 RecipeSerializer.SMELTING_RECIPE,
                 SmeltingRecipe::new,
                 pIngredients,
@@ -84,18 +73,13 @@ public class MRecipeProvider extends RecipeProvider {
                 pCookingTime,
                 pGroup,
                 "_from_smelting"
-                );
+        );
 
     }
 
-    protected static void oreBlasting(RecipeOutput recipeOutput,
-                                      List<ItemLike> pIngredients,
-                                      RecipeCategory pCategory,
-                                      ItemLike pResult,
-                                      float pExperience,
-                                      int pCookingTime,
-                                      String pGroup) {
-        oreCooking(recipeOutput,
+    protected static void oreBlasting(RecipeOutput recipeOutput, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult, float pExperience, int pCookingTime, String pGroup) {
+        oreCooking(
+                recipeOutput,
                 RecipeSerializer.BLASTING_RECIPE,
                 BlastingRecipe::new,
                 pIngredients,
@@ -104,8 +88,38 @@ public class MRecipeProvider extends RecipeProvider {
                 pExperience,
                 pCookingTime,
                 pGroup,
-                "_from_smelting"
+                "_from_blasting"
         );
 
+    }
+
+    protected static void oreCooking(RecipeOutput recipeOutput, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult, float pExperience, int pCookingTime, String pGroup) {
+        oreCooking(
+                recipeOutput,
+                RecipeSerializer.CAMPFIRE_COOKING_RECIPE,
+                CampfireCookingRecipe::new,
+                pIngredients,
+                pCategory,
+                pResult,
+                pExperience,
+                pCookingTime,
+                pGroup,
+                "_from_campfireCooking"
+        );
+    }
+
+    protected static void oreSmoking(RecipeOutput recipeOutput, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult, float pExperience, int pCookingTime, String pGroup) {
+        oreCooking(
+                recipeOutput,
+                RecipeSerializer.SMOKING_RECIPE,
+                SmokingRecipe::new,
+                pIngredients,
+                pCategory,
+                pResult,
+                pExperience,
+                pCookingTime,
+                pGroup,
+                "_from_smoking"
+        );
     }
 }

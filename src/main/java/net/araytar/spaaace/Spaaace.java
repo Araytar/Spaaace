@@ -1,10 +1,12 @@
 package net.araytar.spaaace;
 
 import com.mojang.logging.LogUtils;
+import net.araytar.spaaace.datagen.DimGen.DimensionSpecialEffect;
 import net.araytar.spaaace.items.MBlocks;
 import net.araytar.spaaace.items.MCreativeModeTabs;
 import net.araytar.spaaace.items.MItems;
 import net.minecraft.client.Minecraft;
+import net.minecraft.core.WritableRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.api.distmarker.Dist;
@@ -25,6 +27,7 @@ import org.slf4j.Logger;
 public class Spaaace {
     public static final String MODID = "spaaace";
     private static final Logger LOGGER = LogUtils.getLogger();
+    public static WritableRegistry<DimensionSpecialEffect> DIMENSION_SPECIAL_EFFECTS;
 
     public Spaaace(IEventBus modEventBus, ModContainer modContainer) {
         // Register the commonSetup method for modloading
@@ -69,9 +72,8 @@ public class Spaaace {
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-            // Some client setup code
-            LOGGER.info("HELLO FROM CLIENT SETUP");
-            LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+
+
         }
     }
 }
