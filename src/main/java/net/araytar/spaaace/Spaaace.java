@@ -2,6 +2,7 @@ package net.araytar.spaaace;
 
 import com.mojang.logging.LogUtils;
 import net.araytar.spaaace.datagen.DimGen.DimensionSpecialEffect;
+import net.araytar.spaaace.datagen.DimGen.Registries;
 import net.araytar.spaaace.items.MBlocks;
 import net.araytar.spaaace.items.MCreativeModeTabs;
 import net.araytar.spaaace.items.MItems;
@@ -37,6 +38,7 @@ public class Spaaace {
         MBlocks.BLOCKS.register(modEventBus);
         MItems.ITEMS.register(modEventBus);
         MCreativeModeTabs.CREATIVE_MODE_TABS.register(modEventBus);
+        Registries.DIMENSION_TYPES.register(modEventBus);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
